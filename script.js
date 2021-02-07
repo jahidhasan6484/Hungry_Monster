@@ -1,7 +1,7 @@
 // Add event handler 
 document.getElementById('searchForm').addEventListener('submit', function (event) {
     event.preventDefault();
-    const searchInput = document.getElementById('searchInput').value
+    const searchInput = document.getElementById('searchInput').value;
     searchFood(searchInput);
 });
 
@@ -30,11 +30,10 @@ const searchFood = searchInput => {
             <div class="col-md-12 text-center text-dark">
                 <h3>Please enter any food name to search!</h3>
             </div>`
-
         document.getElementById('row').innerHTML = message;
         return false;
     }
-}
+};
 
 // Display food items
 const displayFoods = foods => {
@@ -42,7 +41,7 @@ const displayFoods = foods => {
     row.innerHTML = "";
 
     foods.forEach(food => {
-        const column = document.createElement('div')
+        const column = document.createElement('div');
         column.className = "col-md-3 food-item my-3";
 
         const foodContent = `
@@ -56,7 +55,7 @@ const displayFoods = foods => {
         column.innerHTML = foodContent;
         row.appendChild(column);
     });
-}
+};
 
 //  Fetch single item using item id API
 const getDetails = idMeal => {
@@ -64,7 +63,7 @@ const getDetails = idMeal => {
     fetch(url)
         .then(response => response.json())
         .then(data => displayDetails(data.meals));
-}
+};
 
 // Display single item
 const displayDetails = foods => {
@@ -78,7 +77,7 @@ const displayDetails = foods => {
                 </div>
                 <div class="col-md-6">
                     <div class="card-body">
-                        <h3 class="card-title">${food.strMeal} <span><button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button></span></h3>
+                        <h3 class="card-title">${food.strMeal} <span><button id="cancelButton" type="button" class="btn-dark float-end" data-bs-dismiss="modal" aria-label="Close"></button></span></h3>
                         <h5 class="card-title">Ingredients</h5>
                         <ul class="list-unstyled">
                             ${ingredientList(food)}
@@ -92,17 +91,17 @@ const displayDetails = foods => {
         const foodModal = new bootstrap.Modal(document.getElementById('foodModal'));
         foodModal.show();
     });
-}
+};
 
 // Create Ingredient list
 const ingredientList = food => {
     let li = '';
 
     for (let i = 1; i <= 20; i++) {
-        let strIngredient = 'strIngredient' + i
+        let strIngredient = 'strIngredient' + i;
         if (food[strIngredient]) {
             li = li + `<li><span><i class="fas fa-check-square text-warning"></i></span> ${food[strIngredient]}</li>`;
         }
     }
     return li;
-}
+};

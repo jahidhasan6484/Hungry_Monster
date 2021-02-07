@@ -6,14 +6,10 @@
     padding: 15px;
     border-radius: 30px;
 }
-.items-image img{
-    transition: all.3s;
-}
-.items-image:hover img{
-    -webkit-filter: grayscale(100%) brightness(50%);
-    filter: grayscale(100%) brightness(50%);
-}
-
-.form-control:focus, .btn-dark:focus{
+.form-control:focus, 
+.btn-dark:focus{
     box-shadow: none;
+}
+#cancelButton{
+    width: 30px;
 }
