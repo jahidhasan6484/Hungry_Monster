@@ -1,3 +1,19 @@
-h1{
-    color: red;
+.navbar-brand img{
+    width: 100px;
+}
+.single-item-image{
+    width: 100%;
+    padding: 15px;
+    border-radius: 30px;
+}
+.items-image img{
+    transition: all.3s;
+}
+.items-image:hover img{
+    -webkit-filter: grayscale(100%) brightness(50%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%) brightness(50%);
+}
+
+.form-control:focus, .btn-danger:focus{
+    box-shadow: none;
 }
