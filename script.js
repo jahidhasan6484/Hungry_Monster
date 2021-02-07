@@ -1,12 +1,11 @@
-
 // Add event handler 
-document.getElementById('searchForm').addEventListener('submit', function (e) {
-    e.preventDefault()
+document.getElementById('searchForm').addEventListener('submit', function (event) {
+    event.preventDefault();
     const searchInput = document.getElementById('searchInput').value
-    searchFood(searchInput)
-})
+    searchFood(searchInput);
+});
 
-// Fetch data from API with search input
+// Fetch data using search input API
 const searchFood = searchInput => {
     if (searchInput) {
         document.getElementById("searchForm").reset();
@@ -16,36 +15,35 @@ const searchFood = searchInput => {
             .then(data => {
                 if (data.meals === null) {
                     const message = `
-                    <div class="col-md-12 text-center text-danger">
-                        <h3>!!!Ops... No food found with the name "${searchInput}"</h3>
+                    <div class="col-md-12 text-center text-dark">
+                        <h3>No item found with the name "${searchInput}"!</h3>
                     </div>`
 
-                    document.getElementById('row').innerHTML = message
-                    return false
+                    document.getElementById('row').innerHTML = message;
+                    return false;
                 } else {
-                    displayFoods(data.meals)
+                    displayFoods(data.meals);
                 }
-
-            })
+            });
     } else {
         const message = `
-            <div class="col-md-12 text-center text-danger">
-                <h3>Nothing searched.... Please enter food name.</h3>
+            <div class="col-md-12 text-center text-dark">
+                <h3>Please enter any food name to search!</h3>
             </div>`
 
-        document.getElementById('row').innerHTML = message
-        return false
+        document.getElementById('row').innerHTML = message;
+        return false;
     }
 }
 
-// Display food items to DOM
+// Display food items
 const displayFoods = foods => {
-    const row = document.getElementById('row')
-    row.innerHTML = ""
+    const row = document.getElementById('row');
+    row.innerHTML = "";
 
     foods.forEach(food => {
         const column = document.createElement('div')
-        column.className = "col-md-3 food-item my-3 "
+        column.className = "col-md-3 food-item my-3";
 
         const foodContent = `
         <div onclick="getDetails('${food.idMeal}')" class="items-image card w-100 overflow-hidden">
@@ -55,20 +53,20 @@ const displayFoods = foods => {
             </div>
         </div>
         `
-        column.innerHTML = foodContent
-        row.appendChild(column)
+        column.innerHTML = foodContent;
+        row.appendChild(column);
     });
 }
 
-//  Fetch single item from API with item id
+//  Fetch single item using item id API
 const getDetails = idMeal => {
     const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idMeal}`
     fetch(url)
         .then(response => response.json())
-        .then(data => displayDetails(data.meals))
+        .then(data => displayDetails(data.meals));
 }
 
-// Display single item to DOM
+// Display single item
 const displayDetails = foods => {
     const modalBody = document.getElementById('modalBody')
     foods.forEach(food => {
@@ -90,15 +88,15 @@ const displayDetails = foods => {
             </div>
         </div>
         `
-        modalBody.innerHTML = foodDetails
-        const foodModal = new bootstrap.Modal(document.getElementById('foodModal'))
-        foodModal.show()
+        modalBody.innerHTML = foodDetails;
+        const foodModal = new bootstrap.Modal(document.getElementById('foodModal'));
+        foodModal.show();
     });
 }
 
-// Create Ingredient list without empty value
+// Create Ingredient list
 const ingredientList = food => {
-    let li = ''
+    let li = '';
 
     for (let i = 1; i <= 20; i++) {
         let strIngredient = 'strIngredient' + i
@@ -106,5 +104,5 @@ const ingredientList = food => {
             li = li + `<li><span><i class="fas fa-check-square text-warning"></i></span> ${food[strIngredient]}</li>`;
         }
     }
-    return li
+    return li;
 }
