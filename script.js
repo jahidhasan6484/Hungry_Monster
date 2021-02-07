@@ -1,12 +1,5 @@
-/*
-    Title       : Assignment 5 | Hungry Monstar
-    Description : Load data from API & place to DOM. 
-    Author      : Prodip M
-    Date        : 06 February 2021
-    Time        : 10:12 PM
-*/
 
-// Add event handelar 
+// Add event handler 
 document.getElementById('searchForm').addEventListener('submit', function (e) {
     e.preventDefault()
     const searchInput = document.getElementById('searchInput').value
